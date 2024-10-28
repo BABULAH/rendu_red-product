@@ -1,0 +1,15 @@
+# Ignorer les dossiers node_modules
+node_modules/
+
+# Ignorer les fichiers de configuration d'environnement
+.env
+
+# Ignorer les fichiers de sortie de compilation
+dist/
+
+# Ignorer les fichiers de logs
+logs
+*.log
+
+# Ignorer les fichiers de systèmes (Mac)
+.DS_Store

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-//const auth = require('../middleware/auth');
+const auth = require('../middleware/auth');
 const Hotel = require('../models/Hotel');
 const Currency = require('../models/Currency');
 const cloudinary = require('../utils/cloudinary');
@@ -58,7 +58,7 @@ router.post('/', upload.single('image'), async (req, res) => {
 
 
 // Lister tous les hôtels
-router.get('/', async (req, res) => {
+router.get('/',auth ,async (req, res) => {
   try {
     const hotels = await Hotel.find()
       .populate('user', ['name', 'email']) // Popule le champ user pour récupérer le nom et l'email
