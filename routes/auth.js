@@ -32,10 +32,8 @@ router.post('/register', async (req, res) => {
         user = new User({
             username,
             email,
-            password,
-            role: 'user'  // Définit le rôle par défaut
+            password
         });
-
 
         // Hacher le mot de passe avant de le sauvegarder
         const salt = await bcrypt.genSalt(10);
@@ -62,7 +60,6 @@ router.post('/register', async (req, res) => {
     }
 });
 
-
 // Route de connexion
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
@@ -81,19 +78,15 @@ router.post('/login', async (req, res) => {
         }
 
         // Générer le token JWT
-        const token = jwt.sign({ id: user._id, role: user.role }, JWT_SECRET, { expiresIn: '1h' });
-
-        // Redirection en fonction du rôle
-        const redirectUrl = user.role === 'admin' ? '/dashboard.js' : '/acceuil.js';
+        const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: '1h' });
 
         // Envoyer la réponse avec le token et les informations de l'utilisateur
         res.json({
             token,
             user: {
                 id: user._id,
-                username: user.username,
-                role: user.role, // Inclure le rôle dans la réponse
-                redirectUrl // Ajoutez l'URL de redirection
+                username: user.username, // Assurez-vous que le champ est bien "username"
+                // email: user.email
             }
         });
     } catch (error) {
@@ -101,7 +94,6 @@ router.post('/login', async (req, res) => {
         res.status(500).json({ message: 'Erreur serveur' });
     }
 });
-
 
 // Configuration de Nodemailer pour Mailtrap
 const transporter = nodemailer.createTransport({
