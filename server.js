@@ -4,6 +4,7 @@ const express = require('express');
 const connectDB = require('./config/db');
 const mongoose = require('mongoose');
 const hotelRoutes = require('./routes/hotel');
+const acceuilRoutes = require('./routes/acceuil');
 const auth = require('./middleware/auth'); 
 const cors = require('cors');
 // Dans app.js ou server.js
@@ -41,6 +42,7 @@ app.use(bodyParser.json()); // Permet d'analyser les requêtes JSON
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/hotels', require('./routes/hotel'));
 app.use('/api/hotels', hotelRoutes);  
+app.use('/api/acceuil', acceuilRoutes);  
 app.use('/api/currency', require('./routes/currency')); 
 
 app.use('/api/currency', currenciesRoute);
