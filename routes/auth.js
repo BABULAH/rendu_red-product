@@ -147,30 +147,6 @@ router.post('/auth/forgot-password', async (req, res) => {
 
 
 
-//reinitialisation de mot de passe
-// router.post('/reset-password', async (req, res) => {
-//     const { token, newPassword } = req.body;
-//     try {
-//         // Vérifier et décoder le token
-//         const decoded = jwt.verify(token, JWT_SECRET);
-//         const user = await User.findById(decoded.id);
-//         if (!user) {
-//             return res.status(400).json({ message: "Lien de réinitialisation invalide ou expiré" });
-//         }
-
-//         // Hacher le nouveau mot de passe
-//         const salt = await bcrypt.genSalt(10);
-//         user.password = await bcrypt.hash(newPassword, salt);
-
-//         // Sauvegarder le nouvel utilisateur
-//         await user.save();
-//         res.json({ message: "Mot de passe réinitialisé avec succès" });
-//     } catch (error) {
-//         console.error(error.message);
-//         res.status(500).json({ message: 'Erreur serveur' });
-//     }
-// });
-
 
 
 module.exports = router; // Exporte uniquement le routeur ici
