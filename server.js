@@ -25,7 +25,6 @@ const allowedOrigins = [
   'https://volkeno-redproduct-front-4.onrender.com'
 ];
 
-const cors = require('cors');
 app.use(cors({ origin: 'https://volkeno-red-product-front.onrender.com', credentials: true }));
 
 // app.use(cors({
