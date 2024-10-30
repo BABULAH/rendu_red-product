@@ -24,16 +24,20 @@ const allowedOrigins = [
   'http://localhost:3000',
   'https://volkeno-redproduct-front-4.onrender.com'
 ];
-app.use(cors({
-  origin: function (origin, callback) {
-    if (allowedOrigins.includes(origin) || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-}));
+
+const cors = require('cors');
+app.use(cors({ origin: 'https://volkeno-red-product-front.onrender.com', credentials: true }));
+
+// app.use(cors({
+//   origin: function (origin, callback) {
+//     if (allowedOrigins.includes(origin) || !origin) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   },
+//   credentials: true,
+// }));
 
 // Vérification de la variable d'environnement MONGO_URI
 console.log('Mongo URI:', process.env.MONGO_URI);
