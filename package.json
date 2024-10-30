@@ -6,9 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "nodemon server.js",
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
@@ -31,9 +30,7 @@
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
-    "next": "latest",
     "react": "latest",
     "react-dom": "latest"
   }
-  
 }
