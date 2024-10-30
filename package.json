@@ -30,7 +30,10 @@
     "nodemon": "^3.1.7",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
   }
   
 }
