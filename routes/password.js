@@ -9,13 +9,13 @@ const nodemailer = require('nodemailer');
 
 // Configuration de Nodemailer pour Mailtrap
 const transporter = nodemailer.createTransport({
-    host: 'smtp.mailtrap.io',
-    port: 2525,
+    service: 'gmail',
     auth: {
-        user: process.env.MAILTRAP_USER, // Votre nom d'utilisateur Mailtrap
-        pass: process.env.MAILTRAP_PASS, // Votre mot de passe Mailtrap
+        user: process.env.GMAIL_USER, // Votre adresse Gmail
+        pass: process.env.GMAIL_PASS, // Votre mot de passe Gmail ou mot de passe d'application
     },
 });
+
 
 // Fonction d'envoi d'email
 const sendResetEmail = (email, resetToken) => {
@@ -82,8 +82,6 @@ router.post('/auth/reset-password', async (req, res) => {
 
 
 //Route de deconnexion de l'utilisateur
-
-// Route de déconnexion
 router.post('/auth/logout', (req, res) => {
     // Effacez le token stocké côté serveur, ou supprimez les cookies d'authentification
     res.clearCookie('token'); // Suppression du cookie token (si applicable)
