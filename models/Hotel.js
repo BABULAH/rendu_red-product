@@ -8,7 +8,7 @@ const HotelSchema = new mongoose.Schema({
     pricePerNight: { type: Number, required: true },
     currency: { type: mongoose.Schema.Types.ObjectId, ref: 'Currency', required: true }, // Référence à la table Currency
     image: { type: String, required: true },
-    // user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
 }, { timestamps: true });
 
 const Hotel = mongoose.model('Hotel', HotelSchema);

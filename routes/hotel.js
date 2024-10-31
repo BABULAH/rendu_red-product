@@ -58,13 +58,17 @@ router.post('/', upload.single('image'), async (req, res) => {
 
 
 // Lister tous les hôtels
-router.get('/',auth ,async (req, res) => {
+router.get('/', auth, async (req, res) => {
   try {
-    const hotels = await Hotel.find()
+    // Récupérez l'ID de l'utilisateur connecté
+    const userId = req.user.id;
+
+    // Recherchez les hôtels qui appartiennent à cet utilisateur
+    const hotels = await Hotel.find({ user: userId })
       .populate('user', ['name', 'email']) // Popule le champ user pour récupérer le nom et l'email
-      .populate('currency', 'name'); // Ajoute cette ligne pour peupler le champ currency et récupérer le nom de la devise
-    
-    // Optionnel : Si vous voulez ajouter le nom de la devise à chaque hôtel dans la réponse
+      .populate('currency', 'name'); // Popule le champ currency pour récupérer le nom de la devise
+
+    // Optionnel : Ajouter le nom de la devise à chaque hôtel dans la réponse
     const hotelsWithCurrencyName = hotels.map(hotel => ({
       ...hotel._doc,
       currencyName: hotel.currency ? hotel.currency.name : null // Ajoute le nom de la devise à l'objet de l'hôtel
@@ -76,8 +80,6 @@ router.get('/',auth ,async (req, res) => {
     res.status(500).send('Server error');
   }
 });
-
-
 
 module.exports = router;
 
