@@ -21,9 +21,13 @@ const app = express();
 
 // Middleware pour permettre les requêtes CORS
 
+
 app.use(cors({
   origin: 'https://la-solution-front.onrender.com' // Autorise uniquement cette origine
 }));
+
+app.use(cors({ origin: 'https://la-solution-front.onrender.com' })); // Remplacez par votre URL front-end.
+
 
 
 // Vérification de la variable d'environnement MONGO_URI
