@@ -57,7 +57,7 @@ router.post('/', upload.single('image'), async (req, res) => {
 
 
 
-// Lister tous les hôtels
+// Lister tous les hôtels pour chaque utilisateur connecter 
 router.get('/', auth, async (req, res) => {
   try {
     // Récupérez l'ID de l'utilisateur connecté
