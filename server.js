@@ -20,10 +20,20 @@ dotenv.config();
 const app = express();
 
 // Middleware pour permettre les requêtes CORS
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://volkeno-redproduct-front-4.onrender.com'
+];
 app.use(cors({
-    origin: 'http://localhost:3000' // Remplacez par l'URL de votre frontend si nécessaire
-  }));
-
+  origin: function (origin, callback) {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+}));
 
 // Vérification de la variable d'environnement MONGO_URI
 console.log('Mongo URI:', process.env.MONGO_URI);
