@@ -2,44 +2,39 @@ require('dotenv').config(); // Charge les variables d'environnement
 
 const express = require('express');
 const connectDB = require('./config/db');
-const mongoose = require('mongoose');
 const hotelRoutes = require('./routes/hotel');
 const acceuilRoutes = require('./routes/acceuil');
-const auth = require('./middleware/auth'); 
+const auth = require('./middleware/auth');
 const cors = require('cors');
-// Dans app.js ou server.js
 const currenciesRoute = require('./routes/currency');
-const bodyParser = require('body-parser');
-const dotenv = require('dotenv');
 const passwordRoutes = require('./routes/password');
 
-
 // Charger les variables d'environnement
-dotenv.config();
-
 const app = express();
 
-
+// Configuration CORS
 const corsOptions = {
-    origin: 'https://la-solution-front.onrender.com', // Autoriser uniquement l'origine du frontend
-    allowedHeaders: ['Content-Type', 'Authorization'], // En-têtes autorisés
-    credentials: true, // Si vous devez envoyer des cookies ou des informations d'authentification
-  };
-  
-  app.use(cors(corsOptions));
+  origin: 'https://la-solution-front.onrender.com', // Autorise uniquement l'origine du frontend
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Méthodes HTTP autorisées
+  allowedHeaders: ['Content-Type', 'Authorization'], // En-têtes autorisés
+  credentials: true, // Permet l'envoi de cookies et d'informations d'authentification
+};
 
+app.use(cors(corsOptions)); // Applique CORS à toutes les routes
+
+// Gérer les requêtes OPTIONS globalement
+app.options('*', cors(corsOptions)); 
 
 // Connexion à la base de données
 connectDB();
 
 // Middleware pour parser le JSON
 app.use(express.json());
-app.use(bodyParser.json());
 
 // Routes
 app.use('/api/auth', require('./routes/auth'));
-app.use('/api/hotels', hotelRoutes);  
-app.use('/api/acceuil', acceuilRoutes);  
+app.use('/api/hotels', hotelRoutes);
+app.use('/api/acceuil', acceuilRoutes);
 app.use('/api/currency', currenciesRoute);
 app.use('/api', passwordRoutes);
 
