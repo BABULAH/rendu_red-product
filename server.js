@@ -20,7 +20,13 @@ dotenv.config();
 const app = express();
 
 
-app.use(cors({ origin: 'https://la-solution-front.onrender.com' }));
+const corsOptions = {
+    origin: 'https://la-solution-front.onrender.com', // Autoriser uniquement l'origine du frontend
+    allowedHeaders: ['Content-Type', 'Authorization'], // En-têtes autorisés
+    credentials: true, // Si vous devez envoyer des cookies ou des informations d'authentification
+  };
+  
+  app.use(cors(corsOptions));
 
 
 // Connexion à la base de données
