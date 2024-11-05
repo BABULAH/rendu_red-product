@@ -4,17 +4,11 @@ const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-// const sgMail = require('@sendgrid/mail');
-// const sgMail = require('@sendgrid/mail');
+
 
 const nodemailer = require('nodemailer');
 
-// dotenv.config();
 
-// Configurer SendGrid avec votre clé API
-// sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
-// clé secrète sécurisée
 const JWT_SECRET = 'lI2O6wqrXw2G8l04suKaB4FIljNPjqGd'; 
 
 // Route d'inscription

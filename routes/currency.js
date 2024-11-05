@@ -12,7 +12,7 @@ router.post('/', auth, async (req, res) => {
     const newCurrency = new Currency({
       name,
       value,
-      user: req.user._id, // Lier la devise à l'utilisateur connecté
+      // user: req.user._id, // Lier la devise à l'utilisateur connecté
     });
 
     const currency = await newCurrency.save();

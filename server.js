@@ -20,44 +20,22 @@ dotenv.config();
 const app = express();
 
 // Middleware pour permettre les requêtes CORS
-
-
-app.use(cors({
-  origin: 'https://la-solution-front.onrender.com' // Autorise uniquement cette origine
-}));
-
-app.use(cors({ origin: 'https://la-solution-front.onrender.com' })); // Remplacez par votre URL front-end.
-
-
-
-// Vérification de la variable d'environnement MONGO_URI
-console.log('Mongo URI:', process.env.MONGO_URI);
-
+    app.use(cors({ origin: 'https://la-solution-front.onrender.com' }));
+// app.use(cors({ origin: 'http://localhost:3000' }));
 
 // Connexion à la base de données
 connectDB();
 
 // Middleware pour parser le JSON
 app.use(express.json());
-
-app.use(bodyParser.json()); // Permet d'analyser les requêtes JSON
-
+app.use(bodyParser.json());
 
 // Routes
 app.use('/api/auth', require('./routes/auth'));
-app.use('/api/hotels', require('./routes/hotel'));
 app.use('/api/hotels', hotelRoutes);  
 app.use('/api/acceuil', acceuilRoutes);  
-app.use('/api/currency', require('./routes/currency')); 
-
 app.use('/api/currency', currenciesRoute);
-
-
-// Utiliser le routeur pour les requêtes sur /api
 app.use('/api', passwordRoutes);
-
-
-
 
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log(`Serveur exécuté sur le port ${PORT}`));
