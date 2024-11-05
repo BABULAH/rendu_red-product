@@ -19,9 +19,9 @@ dotenv.config();
 
 const app = express();
 
-// Middleware pour permettre les requêtes CORS
-    app.use(cors({ origin: 'https://la-solution-front.onrender.com' }));
-//  app.use(cors({ origin: 'http://localhost:3000' }));
+
+app.use(cors({ origin: 'https://la-solution-front.onrender.com' }));
+
 
 // Connexion à la base de données
 connectDB();
