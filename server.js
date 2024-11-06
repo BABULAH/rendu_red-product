@@ -14,7 +14,7 @@ const app = express();
 
 // Configuration CORS
 const corsOptions = {
-  origin: 'https://la-solution-front.onrender.com', // Autorise uniquement l'origine du frontend
+  origin: 'https://mon-projet-red-product-front.onrender.com', // Autorise uniquement l'origine du frontend
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Méthodes HTTP autorisées
   allowedHeaders: ['Content-Type', 'Authorization'], // En-têtes autorisés
   credentials: true, // Permet l'envoi de cookies et d'informations d'authentification
